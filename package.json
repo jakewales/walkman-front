@@ -1,0 +1,29 @@
+{
+  "name": "walkman",
+  "version": "1.0.0",
+  "description": "a web walkman",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:dev": "webpack-dev-server --hot --inline"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "css-loader": "^1.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "less": "^3.8.1",
+    "less-loader": "^4.1.0",
+    "raw-loader": "^0.5.1",
+    "style-loader": "^0.23.0",
+    "ts-loader": "^5.0.0",
+    "typescript": "^3.0.3",
+    "webpack": "^4.17.2",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.8"
+  },
+  "dependencies": {
+    "axios": "^0.18.0"
+  }
+}
