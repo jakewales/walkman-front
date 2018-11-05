@@ -13,15 +13,14 @@ export class AudioComponent {
         let audioBuffer = await this.audio_ctx.decodeAudioData(this.data);
         let source = this.audio_ctx.createBufferSource();
         source.buffer = audioBuffer;
-        source.connect(this.audio_ctx.destination);
         source.start();
         // source.loop = true;
         source.connect(this.audio_analyser);
         this.audio_analyser.connect(this.distortion);
         this.distortion.connect(this.biquadFilter);
         this.biquadFilter.connect(this.gainNode);
+        source.connect(this.gainNode);
         this.gainNode.connect(this.audio_ctx.destination);
-
         this.audio_analyser.fftSize = 32;
 
         const bufferLengthAlt = this.audio_analyser.frequencyBinCount;
@@ -31,5 +30,9 @@ export class AudioComponent {
             ctx: this.audio_analyser,
             data: dataArrayAlt
         }
+    }
+
+    setVolumn (volumn: number) {
+        this.gainNode.gain.value = volumn;
     }
 }
