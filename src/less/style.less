@@ -3,5 +3,27 @@ html, body {
     width: 100%;
     padding: 0px;
     margin: 0px;
-    background: #000;
+}
+
+.disc_outside, .disc_inside {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    border-radius: 50%;
+}
+
+.disc_outside {
+    display: flex;
+    align-items: center;
+    align-items:center;
+    justify-content:center;
+}
+
+.start_animate {
+    animation: rotates 5s infinite linear;
+}
+
+@keyframes rotates {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg);}
 }

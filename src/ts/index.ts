@@ -21,6 +21,8 @@ let inputFile = new InputComponent(inputElement, 'audio');
 
 const canvasElement = <HTMLCanvasElement> document.querySelector('#main_panel');
 
+const volumnElement = <HTMLInputElement> document.querySelector('#volumn');
+
 
 const init = async() => {
   let response = await axios.post('http://localhost:3000/login', {
@@ -39,8 +41,36 @@ const init = async() => {
     const musicResponse = await instance.get('http://localhost:3000/audio/1');
     const audioInstance = new AudioComponent(musicResponse.data);
     const canvasAnimation = new CanvasComponent(canvasElement, audioInstance.init(), 'wave');
+    volumnElement.onchange = function() {
+      audioInstance.setVolumn(parseInt(volumnElement.value) / 100);
+    }
   }
 };
 
 init();
+
+// upload files
+
+const uploadInputElement = <HTMLInputElement> document.querySelector('#uploadFile');
+const uploadButtonElement = <HTMLButtonElement> document.querySelector('#uploadButton');
+
+let uploadInput = new InputComponent(uploadInputElement, 'audio');
+
+uploadButtonElement.onclick = async function() {
+  const token = sessionStorage.getItem('token');
+
+  let formData = new FormData();
+  formData.append('audio', uploadInput.rawFiles[0]);
+
+  if (token) {
+    const requestInstance = axios.create({
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+    let response = await requestInstance.post('http://localhost:3000/uploadAudio', formData);
+  }
+}
+
 
