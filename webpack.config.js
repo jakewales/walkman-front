@@ -41,6 +41,7 @@ module.exports = {
     devServer: {
         contentBase: path.join(__dirname, 'dist'),
         compress: true,
+        host: '192.168.1.118',
         port: 8866
     },
     plugins: [

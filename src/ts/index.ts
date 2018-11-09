@@ -15,6 +15,7 @@ import { InputComponent } from './input-component';
 import { CanvasComponent } from './canvas-component';
 
 
+
 const inputElement = <HTMLInputElement> document.querySelector('#selectElement');
 
 let inputFile = new InputComponent(inputElement, 'audio');
@@ -22,10 +23,10 @@ let inputFile = new InputComponent(inputElement, 'audio');
 const canvasElement = <HTMLCanvasElement> document.querySelector('#main_panel');
 
 const volumnElement = <HTMLInputElement> document.querySelector('#volumn');
-
+const balanceElement = <HTMLInputElement> document.querySelector('#balance');
 
 const init = async() => {
-  let response = await axios.post('http://localhost:3000/login', {
+  let response = await axios.post('http://192.168.1.118:3000/login', {
     name: 'jake',
     password: '123'
   });
@@ -38,11 +39,14 @@ const init = async() => {
         'Authorization': `Bearer ${token}`
       }
     });
-    const musicResponse = await instance.get('http://localhost:3000/audio/1');
+    const musicResponse = await instance.get('http://192.168.1.118:3000/audio/1');
     const audioInstance = new AudioComponent(musicResponse.data);
     const canvasAnimation = new CanvasComponent(canvasElement, audioInstance.init(), 'wave');
     volumnElement.onchange = function() {
       audioInstance.setVolumn(parseInt(volumnElement.value) / 100);
+    }
+    balanceElement.onchange = function() {
+      audioInstance.setBalance(parseInt(balanceElement.value));
     }
   }
 };
