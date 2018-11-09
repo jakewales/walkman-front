@@ -66,6 +66,7 @@ export class CanvasComponent {
         this.ctx.clearRect(0, 0, this.WIDTH, this.HEIGHT);
         const audio = await this.audio;
         audio.ctx.getByteFrequencyData(audio.data);
+        
         this.panels[0].draw();
 
         let middle = 0;

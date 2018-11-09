@@ -8,10 +8,17 @@
 </head>
 <body>
     <canvas id="main_panel"></canvas>
-    <div id="disc"></div>
-    <input type="range" id="volumn" max="100" min="0" value="50">
+    <div style="display: none;" id="disc"></div>
+    <div>
+        <span>音量：</span>
+        <input type="range" id="volumn" max="100" min="0" value="50">
+    </div>
+    <div>
+        <span>左右：</span>
+        <input type="range" id="balance" max="200" min="0" value="100" name="">
+    </div>
     <input style="display: none;" type="file" id="selectElement" multiple>
-    <div style="display: none;">
+    <div>
         <input type="file" id="uploadFile" multiple>
         <button id="uploadButton">上传</button>
     </div>
